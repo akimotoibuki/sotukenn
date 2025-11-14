@@ -123,3 +123,35 @@ footer {
 .hidden {
     display: none;
 }
+.spot-post-section {
+    padding: 2rem;
+}
+
+.spot-post-section h2 {
+    margin-bottom: 1rem;
+}
+
+.spot-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+}
+
+.spot-form input,
+.spot-form select,
+.spot-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.spot-form button {
+    padding: 0.7rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

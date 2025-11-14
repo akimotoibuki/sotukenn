@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>スポット画面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>アプリ名</h1>
+            <form class="search-form">
+                <input type="text" placeholder="検索">
+                <button type="submit">検索</button>
+            </form>
+            <a href="#" class="logout-button">ログアウト</a>
+        </div>
+    </header>
+
+    <nav class="genre-filter">
+        <h2>
+            ジャンル
+            <button id="toggle-genre" class="triangle-button">▶</button>
+            <div id="extra-genres" class="extra-genres hidden">
+                <label><input type="checkbox" value="spiritual"> 心霊</label>
+                <label><input type="checkbox" value="view"> 絶景</label>
+                <label><input type="checkbox" value="aquarium"> 水族館</label>
+                <label><input type="checkbox" value="amusement"> 遊園地</label>
+            </div>
+        </h2>
+        <form>
+            <label><input type="checkbox" value="family"> 家族</label>
+            <label><input type="checkbox" value="friends"> 友人</label>
+            <label><input type="checkbox" value="date"> デート</label>
+            <label><input type="checkbox" value="popular"> 人気</label>
+        </form>
+    </nav>
+
+    <main>
+        <section class="calendar-section">
+            <h2>スポット</h2>
+            <div id="calendar">
+                <p>ここにスポットが表示されます。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 芽吹樹のアプリ</p>
+    </footer>
+
+    <script src="home.js"></script>
+</body>
+</html>
