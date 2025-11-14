@@ -4,6 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     toggleButton.addEventListener("click", () => {
         extraGenres.classList.toggle("hidden");
-        toggleButton.textContent = extraGenres.classList.contains("hidden") ? "▼" : "▲";
+        toggleButton.textContent = extraGenres.classList.contains("hidden") ? "▶" : "◀";
     });
 });
