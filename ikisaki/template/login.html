@@ -8,6 +8,15 @@
 </head>
 <body>
     <div class="login-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flash-messages">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
         <h1>ログイン</h1>
         <form action="/login" method="POST">
             <label for="user-id">ID</label>

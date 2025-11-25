@@ -58,3 +58,19 @@ body {
     text-decoration: none;
     font-weight: bold;
 }
+.flash-messages {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.flash-messages .success {
+    color: green;
+    font-weight: bold;
+}
+
+.flash-messages .error {
+    color: red;
+    font-weight: bold;
+}
