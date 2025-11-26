@@ -211,3 +211,7 @@ footer {
     border-radius: 4px;
     cursor: pointer;
 }
+
+body {
+    background-color: lightgreen;
+}

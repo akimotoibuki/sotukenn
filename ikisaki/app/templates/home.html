@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>アプリ名</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 <body>
     <header>
@@ -50,7 +50,6 @@
     <footer>
         <p>&copy; 2025 芽吹樹のアプリ</p>
     </footer>
-
-    <script src="home.js"></script>
+    <script src="{{ url_for('static', filename='home.js') }}"></script>
 </body>
 </html>
