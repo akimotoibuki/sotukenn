@@ -14,9 +14,15 @@ def login():
         if user and check_password_hash(user.password_hash, password):
             session['user_id'] = user.user_id
             flash('ログイン成功！')
-            return redirect(url_for('home'))  # ホーム画面に遷移
+            return redirect(url_for('home.home'))  # ホーム画面に遷移
         else:
             flash('ユーザーIDまたはパスワードが間違っています')
             return redirect(url_for('login.login'))
 
     return render_template('login.html')
+
+@login_bp.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    flash('ログアウトしました')
+    return redirect(url_for('login.login'))

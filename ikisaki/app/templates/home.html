@@ -10,11 +10,11 @@
     <header>
         <div class="header-container">
             <h1>アプリ名</h1>
-            <form class="search-form" action="spot.html" method="GET">
+            <form class="search-form" action="{{ url_for('home.spot') }}" method="GET">
                 <input type="text" placeholder="検索" name="query">
                 <button type="submit">検索</button>
             </form>
-            <a href="#" class="logout-button">ログアウト</a>
+            <a href="{{ url_for('login.logout') }}" class="logout-button">ログアウト</a>
         </div>
     </header>
 
@@ -34,7 +34,7 @@
             <label><input type="checkbox" value="friends"> 友人</label>
             <label><input type="checkbox" value="date"> デート</label>
             <label><input type="checkbox" value="popular"> 人気</label>
-            <a href="spotpost.html" class="spotpost-button">スポット投稿</a>
+            <a href="{{ url_for('home.spotpost') }}" class="spotpost-button">スポット投稿</a>
         </form>
     </nav>
 
