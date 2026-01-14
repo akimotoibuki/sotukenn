@@ -11,8 +11,8 @@
         <div class="header-container">
             <h1>アプリ名</h1>
             <nav class="nav-links">
-                <a href="home.html">ホーム</a>
-                <a href="#">ログアウト</a>
+                <a href="{{ url_for('home.home') }}">ホーム</a>
+                <a href="{{ url_for('login.logout') }}">ログアウト</a>
             </nav>
         </div>
     </header>
@@ -20,7 +20,7 @@
     <main>
         <section class="spot-post-section">
             <h2>スポット投稿</h2>
-            <form action="/spotpost" method="POST" enctype="multipart/form-data" class="spot-form">
+            <form action="{{ url_for('home.spotpost') }}" method="POST" enctype="multipart/form-data" class="spot-form">
                 <label for="spot-name">スポット名</label>
                 <input type="text" id="spot-name" name="spot-name" required>
 

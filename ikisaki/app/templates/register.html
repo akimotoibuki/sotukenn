@@ -9,6 +9,16 @@
 <body>
     <div class="register-container">
         <h1>新規登録</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="flashes">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
         <form action="/register" method="POST">
             <label for="user_id">ID</label>
             <input type="text" id="user_id" name="user_id" required>
@@ -21,6 +31,15 @@
         <div class="login-link">
             <a href="/login">ログイン画面へ戻る</a>
         </div>
+        <hr>
+
+        <h2>登録済みユーザー一覧</h2>
+        <ul>
+          {% for user in users %}
+            <li>{{ user.user_id }}</li>
+          {% endfor %}
+        </ul>
+
     </div>
 </body>
 </html>
