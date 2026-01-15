@@ -11,14 +11,18 @@ def register():
         password = request.form['password']
         hashed_pw = generate_password_hash(password)
 
+        # 既存ユーザー確認
         if User.query.filter_by(user_id=user_id).first():
             flash('そのユーザーIDは既に登録されています')
             return redirect(url_for('register.register'))
 
+        # 新規登録
         new_user = User(user_id=user_id, password_hash=hashed_pw)
         db.session.add(new_user)
         db.session.commit()
         flash('登録が完了しました！ログインしてください')
         return redirect(url_for('login.login'))
 
-    return render_template('register.html')
+    # ★ GET のときにユーザー一覧を取得してテンプレートに渡す
+    users = User.query.all()
+    return render_template('register.html', users=users)
