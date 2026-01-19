@@ -13,7 +13,6 @@ def login():
 
         if user and check_password_hash(user.password_hash, password):
             session['user_id'] = user.user_id
-            flash('ログイン成功！')
             return redirect(url_for('home.home'))  # ホーム画面に遷移
         else:
             flash('ユーザーIDまたはパスワードが間違っています')
