@@ -1,27 +1,35 @@
 {% extends "ikisaki/base.html" %}
 {% block title %}ログイン{% endblock %}
 {% block content %}
+<header>ログイン</header>
 <section>
-  <form
-    method="post"
-    action="{{ url_for('ikisaki.login') }}"
-    >
-    {% for message in get_flashed_messages() %}
-      <span class="dt-auth-flash">{{ message }}</span>
-    {% endfor %}
+  <div>
+    <form
+      method="post"
+      action="{{ url_for('ikisaki.login') }}"
+      >
+      {% for message in get_flashed_messages() %}
+        <span class="dt-auth-flash">{{ message }}</span>
+      {% endfor %}
 
-    {{ form.csrf_token }}
-    <p>{{ form.user_id(placeholder="ユーザー名") }}</p>
-		{% for error in form.user_id.errors %}
-			<span style="color:red;">{{error}}</span>
-		{% endfor %}
+      {{ form.csrf_token }}
+      <p>{{form.user_id.label}} {{ form.user_id(placeholder="ユーザー名") }}</p>
+      {% for error in form.user_id.errors %}
+        <span style="color:red;">{{error}}</span>
+      {% endfor %}
 
-    <p>{{ form.password(placeholder="パスワード") }}</p>
-		{% for error in form.password.errors %}
-			<span style="color:red;">{{error}}</span>
-		{% endfor %}
+      <p>{{form.password.label}} {{ form.password(placeholder="パスワード") }}</p>
+      {% for error in form.password.errors %}
+        <span style="color:red;">{{error}}</span>
+      {% endfor %}
 
-    <p><a href="#" onclick="this.closest('form').submit(); return false;" class="spotpost-button">ログイン</a></p>
-  </form>
+      <p><a href="#" onclick="this.closest('form').submit(); return false;" class="spotpost-button">ログイン</a></p>
+    </form>
+  </div>
+
+  <div>
+      <p>ユーザーアカウントを持っていない場合</p>
+      <p><a href="{{url_for('ikisaki.user_create')}}">新規登録</a></p>
+  </div>
 </section>
 {% endblock %}

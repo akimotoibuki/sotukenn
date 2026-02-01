@@ -1,7 +1,7 @@
 {% extends "ikisaki/base.html" %}
 {% block title %}{% if spot %}スポット更新{% else %}スポット作成{% endif %}{% endblock %}
-
 {% block content %}
+<header>スポット{% if spot %}更新{% else %}投稿{% endif %}</header>
 <form
   action="{% if spot %}{{ url_for('ikisaki.spot_upsert', spot_id=spot.id) }}{% else %}{{ url_for('ikisaki.spot_upsert') }}{% endif %}"
   method="POST"

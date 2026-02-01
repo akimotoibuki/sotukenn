@@ -19,10 +19,6 @@
                     <span><a href="{{url_for('ikisaki.user_update')}}" class="spotpost-button">{{ current_user.user_id }}</a></span> -
                     <span><a href="{{ url_for('ikisaki.logout') }}" class="spotpost-button">ログアウト</a></span>
                 </div>
-            {% else %}
-                <div>
-                    <span><a href="{{url_for('ikisaki.user_create')}}" class="spotpost-button">新規作成</a></span>
-                </div>
             {% endif %}
         </div>
     </header>
