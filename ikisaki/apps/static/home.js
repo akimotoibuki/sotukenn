@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       (scheduleEl?.textContent || "").trim();
 
     const input = prompt(
-      `${ymd} の予定を入力（空で削除）`,
+      `予定を入力してください`,
       currentText
     );
 
