@@ -1,0 +1,36 @@
+{% extends "ikisaki/base.html" %}
+{% block title %}スポット検索{% endblock %}
+{% block content %}
+	<table>
+		<tr>
+			<th>スポット名</th>
+			<th>ジャンル</th>
+			<th>タグ</th>
+			<th>画像</th>
+			<th>紹介文</th>
+			<th>URL</th>
+		</tr>
+		{% for spot in spots %}
+		<tr>
+			<td><a href="{{url_for('ikisaki.spot_detail', spot_id=spot.id)}}">{{spot.name}}</a></td>
+			<td>{{config["SPOT_LIST"].get(spot.genre_id)}}</td>
+			<td>
+			{% for t in spot.tags %}
+				{{ t.tag }}{% if not loop.last %}, {% endif %}
+			{% endfor %}
+			</td>
+
+			<td>
+			{% for p in spot.pictures %}
+				<img src="{{config["UPLOAD_URL"]}}{{ p.url }}" width="80">
+			{% endfor %}
+			</td>
+			<td>{{spot.introduction}}</td>
+			<td>{% if spot.url %}<a href="{{ spot.url }}" target="_blank">■</a>{% endif %}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+
+
+{% endblock %}

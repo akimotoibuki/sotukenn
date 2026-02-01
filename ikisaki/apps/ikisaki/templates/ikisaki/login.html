@@ -1,0 +1,27 @@
+{% extends "ikisaki/base.html" %}
+{% block title %}ログイン{% endblock %}
+{% block content %}
+<section>
+  <form
+    method="post"
+    action="{{ url_for('ikisaki.login') }}"
+    >
+    {% for message in get_flashed_messages() %}
+      <span class="dt-auth-flash">{{ message }}</span>
+    {% endfor %}
+
+    {{ form.csrf_token }}
+    <p>{{ form.user_id(placeholder="ユーザー名") }}</p>
+		{% for error in form.user_id.errors %}
+			<span style="color:red;">{{error}}</span>
+		{% endfor %}
+
+    <p>{{ form.password(placeholder="パスワード") }}</p>
+		{% for error in form.password.errors %}
+			<span style="color:red;">{{error}}</span>
+		{% endfor %}
+
+    <p><a href="#" onclick="this.closest('form').submit(); return false;" class="spotpost-button">ログイン</a></p>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "ikisaki/base.html" %}
+{% block title %}ikisaki{% endblock %}
+{% block content %}
+{% for message in get_flashed_messages() %}
+	<span class="dt-auth-flash">{{ message }}</span>
+{% endfor %}
+<div>
+	<p><a href="{{url_for('ikisaki.spot_upsert')}}" class="spotpost-button">スポット投稿</a></p>
+	{% if is_admin is defined and is_admin %}{# ユーザー管理は管理者のみ #}
+		<p><a href="{{url_for('ikisaki.user_list')}}" class="spotpost-button">ユーザー管理</a></p>
+	{% endif %}
+</div>
+
+<section class="calendar-section">
+	<div id="calendar">
+		<div>
+			<a href="{{ url_for('ikisaki.index', ym=prev_yearmonth) }}" class="spotpost-button">＜</a>
+			&nbsp;
+			<a href="{{ url_for('ikisaki.index', ym=next_yearmonth) }}" class="spotpost-button">＞</a>
+		</div>
+
+		<div class="month-block">
+		{% for m in months %}
+			<h3>{{ m.year }}年{{ m.month }}月</h3>
+			<table>
+				<thead>
+				<tr>
+					{% for w in weekday_labels %}
+					<th>{{ w }}</th>
+					{% endfor %}
+				</tr>
+				</thead>
+				<tbody>
+				{% for week in m.weeks %}
+					<tr>
+					{% for day in week %}
+						<td>
+							{% if day == 0 %}
+							&nbsp;
+							{% else %}
+							{% set ymd_str = "%04d%02d%02d"|format(m.year, m.month, day) %}
+							{% set d = date(m.year, m.month, day) %}
+
+							<div class="day-cell" data-ymd="{{ ymd_str }}">
+								<div class="day-num">{{ day }}</div>
+
+								<div class="schedule-text">
+								{% if d in schedule_map %}
+									{{ schedule_map[d] }}
+								{% endif %}
+								</div>
+							</div>
+							{% endif %}
+						</td>
+					{% endfor %}
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "ikisaki/base.html" %}
+{% block title %}スポット詳細{% endblock %}
+{% block content %}
+	<h2>スポット詳細</h2>
+
+	<p>ID: {{ spot.id }}</p>
+	<p>スポット名: {{ spot.name }}</p>
+	<p>ジャンル: {{ genre_name }}</p>
+	<p>紹介文: {{ spot.introduction }}</p>
+	<p>URL: <a href="{{ spot.url }}" target="_blank" rel="noopener">{{ spot.url }}</a></p>
+	<p>作成者: {{ spot.user_id }}</p>
+
+	<p>タグ: 
+	{% for t in spot.tags %}
+		{{ t.tag }}{% if not loop.last %}, {% endif %}
+	{% endfor %}
+	</p>
+
+	<p>画像</p>
+	{% if spot.pictures %}
+	{% for p in spot.pictures %}
+		<div style="margin-bottom:10px;"><img src="{{config["UPLOAD_URL"]}}{{ p.url }}" alt="spot image" width="240"></div>
+	{% endfor %}
+	{% else %}
+	<p>なし</p>
+	{% endif %}
+
+	{% if spot.user_id == current_user.user_id %}{# 自分のspotのみ更新・削除可能 #}
+	<a href="{{ url_for('ikisaki.spot_upsert', spot_id=spot.id) }}">更新</a>
+
+	<!-- 削除用 hidden form -->
+	<form id="delete-form-{{ spot.id }}"
+			action="{{ url_for('ikisaki.spot_delete', spot_id=spot.id) }}"
+			method="post"
+			style="display:none;">
+			{{ form.csrf_token }}
+
+	</form>
+	<!-- 見た目は a リンク -->
+	<a href="#" onclick="if(confirm('本当に削除しますか？')){ document.getElementById('delete-form-{{ spot.id }}').submit(); } return false;">削除</a>
+
+	{% endif %}
+
+	<p><a href="{{ url_for('ikisaki.index') }}">戻る</a></p>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "ikisaki/base.html" %}
+{% block title %}ユーザー情報変更{% endblock %}
+{% block content %}
+<div class="mx-auto dt-auth-main">
+  <div class="card dt-auth-signup">
+    <header>ユーザー管理</header>
+    <section>
+
+		{% for message in get_flashed_messages() %}
+			<span class="dt-auth-flash">{{ message }}</span>
+		{% endfor %}
+
+		<table>
+		<tr>
+			<th>ユーザーID</th>
+			<th></th>
+		</tr>
+
+		{% for u in users %}
+		<tr>
+			<td>{{ u.user_id }}</td>
+			<td>
+			{% if u.user_id in config["ADMIN_USER_ID"] %}
+				管理者
+			{% else %}
+				<a href="{{ url_for('ikisaki.user_delete', user_id=u.user_id) }}" onclick="return confirm('本当に削除しますか？');">
+					削除
+				</a>
+			{% endif %}
+			</td>
+		</tr>
+		{% endfor %}
+		</table>
+
+    </section>
+  </div>
+</div>
+{% endblock %}

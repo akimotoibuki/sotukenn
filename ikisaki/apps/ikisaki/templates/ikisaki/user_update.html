@@ -1,0 +1,30 @@
+{% extends "ikisaki/base.html" %}
+{% block title %}ユーザー情報変更{% endblock %}
+{% block content %}
+<div class="mx-auto dt-auth-main">
+  <div class="card dt-auth-signup">
+    <header>ユーザー情報変更</header>
+    <section>
+      <form
+        action="{{url_for('ikisaki.user_update')}}"
+        method="POST"
+        novalidate="novalidate"
+        >
+        {% for message in get_flashed_messages() %}
+          <span class="dt-auth-flash">{{ message }}</span>
+        {% endfor %}
+        {{form.csrf_token}}
+
+        <p>
+          {{form.password.label}} {{form.password(placeholder="パスワード")}}　（未入力なら変更しない）
+        </p>
+        {% for error in form.password.errors %}
+          <span style="color:red;">{{error}}</span>
+        {% endfor %}
+
+	    <p><a href="#" onclick="this.closest('form').submit(); return false;">更新</a></p>
+      </form>
+    </section>
+  </div>
+</div>
+{% endblock %}
