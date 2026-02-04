@@ -18,9 +18,13 @@
 
 	<p>画像</p>
 	{% if spot.pictures %}
-	{% for p in spot.pictures %}
-		<div style="margin-bottom:10px;"><img src="{{config["UPLOAD_URL"]}}{{ p.url }}" alt="spot image" width="240"></div>
-	{% endfor %}
+	<div style="display:flex; gap:20px; flex-wrap:wrap;">
+		{% for p in spot.pictures %}
+			<img src="{{config["UPLOAD_URL"]}}{{ p.url }}"
+				alt="spot image"
+				style="width:500px; height:auto;">
+		{% endfor %}
+	</div>
 	{% else %}
 	<p>なし</p>
 	{% endif %}
